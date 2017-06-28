@@ -1,0 +1,55 @@
+﻿@model IEnumerable<sqlexpressmvc.Models.Employees>
+
+@{
+    ViewBag.Title = "Employees";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Content/datatablecss")
+}
+
+
+<h4>@Html.Label("Employees")</h4>
+@using (Html.BeginForm("Index", "Employees", FormMethod.Get))
+{<div class="panel panel-info">
+        <div class="panel-body">
+            <div>  
+                    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })               
+            </div>
+        </div>
+    </div>
+}
+<table class="table-fill">
+    <thead>
+        <tr>
+            <th class="text-left">@Html.ActionLink("First Name", "Index", new { sortOrder = ViewBag.FNAMESPM, currentFilter = ViewBag.CurrentFilter }) <span class="glyphicon glyphicon-sort"></span></th>
+            <th class="text-left">@Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.DATEADDEDSPM, currentFilter = ViewBag.CurrentFilter }) <span class="glyphicon glyphicon-sort"></span></th>
+            <th class="text-left">@Html.DisplayNameFor(model => model.mobile)</th>
+            <th class="text-left">@Html.DisplayNameFor(model => model.email)</th>
+            <th class="text-left">Actions</th>
+        </tr>
+    </thead>
+    <tbody class="table-hover">
+@foreach (var item in Model)
+{
+
+
+    <tr onclick = "location.href = '@(Url.Action("Details", "Employees", new { id = item.EmployeesID}))'">
+        <td class="text-left">
+            @Html.DisplayFor(modelItem => item.fname)
+        </td>
+        <td class="text-left">
+            @Html.DisplayFor(modelItem => item.lname)
+        </td>
+        <td class="text-left">
+            @Html.DisplayFor(modelItem => item.mobile)
+        </td>
+        <td class="text-left">
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.EmployeesID }) |
+          
+        </td>
+    </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,43 @@
+﻿@model sqlexpressmvc.Models.Stock
+
+@{
+    ViewBag.Title = "AddPurchase";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Add Purchase</h4>
+<hr />
+@using (Html.BeginForm("AddPurchase", "Stocks", FormMethod.Post, new { newqty = ViewBag.newqty }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.StockID)
+    @Html.HiddenFor(model => model.Title)
+    @Html.HiddenFor(model => model.cost)
+    @Html.HiddenFor(model => model.qty)
+    @Html.HiddenFor(model => model.price)
+    @Html.HiddenFor(model => model.volume)
+    @Html.HiddenFor(model => model.dateAdded)
+
+
+    <div class="col-lg-5">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                @Html.DisplayFor(model => model.Title)
+            </div>
+            <div class="panel-body">
+                <div class="form-control">
+                    Current Quantity : @Html.DisplayFor(model => model.qty)
+                </div>
+                <div class="form-control">
+                    Add Quantity : @Html.TextBox("newqty")<br />
+                </div>
+            </div>
+            <div class="panel-footer">
+                 <input type="submit" value="Save" class="btn btn-danger" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-warning" })                      
+            </div>
+        </div>
+    </div>
+
+
+}

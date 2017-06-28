@@ -1,0 +1,47 @@
+﻿@model IEnumerable<sqlexpressmvc.Models.MembershipBill>
+
+@{
+    ViewBag.Title = "Membership Bill";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+
+<p>
+    @Html.ActionLink("Add New", "Create",null,new { @class="btn btn-primary"})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Employee
+        </th>
+        <th>
+            Member
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>Date</th>
+        <th></th>
+    </tr>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+              @Html.DisplayFor(modelItem => item.Employee.fname) @Html.DisplayFor(modelItem => item.Employee.lname) [@Html.ActionLink("Employee ID - "+ item.Employee.EmployeesID, "Details", "Employees", new { id=item.EmployeesID},null)]
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Member.fname) @Html.DisplayFor(modelItem => item.Member.lname) [@Html.ActionLink("Membership ID - " + item.Member.MembershipID, "Details", "Members", new { id = item.MemberID }, null)]
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.datesold)
+        </td>
+        <td>         
+            @Html.ActionLink("Details", "Details", new { id=item.MembershipBillID })     
+        </td>
+    </tr>
+}
+
+</table>

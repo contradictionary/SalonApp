@@ -1,0 +1,43 @@
+﻿@model IEnumerable<sqlexpressmvc.Models.Billing>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            BILL ID
+        </th><th>
+    Name
+</th>
+     <th>
+        Name
+     </th>
+        <th>
+        Actions
+        </th>
+    </tr>
+    
+
+@foreach (var item in Model) {
+    <tr>
+        <td>@item.BillingsID</td>
+        <td>@item.Name</td>
+        <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+        @*<td>
+            @Html.ListBox("BillingsID", new SelectList(item.Services, "RateListID", "FullName"))
+        </td>*@
+        <td>            
+            @Html.ActionLink("Details", "Details", new { id=item.BillingsID })            
+        </td>
+    </tr>
+}
+
+</table>

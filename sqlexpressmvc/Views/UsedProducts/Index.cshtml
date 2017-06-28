@@ -1,0 +1,67 @@
+﻿@model IEnumerable<sqlexpressmvc.Models.UsedProducts>
+
+@{
+    ViewBag.Title = "In-Use Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Content/datatablecss")
+}
+
+<h4><span class="glyphicon glyphicon-th-list"></span> In-Use Products</h4>
+
+<p>
+    @Html.ActionLink("Create New", "Create",null, new { @class="btn btn-primary"})
+</p>
+
+<table class="table-fill">
+    <thead>
+        <tr>
+            <th  class="text-left">
+                Stock
+            </th>
+            <th class="text-left">
+                Quantity
+            </th >
+            <th class="text-left">
+                Volume
+            </th>
+            <th class="text-left">
+                Date Opened
+            </th>
+            <th class="text-left">
+                Last Used
+            </th>
+            <th class="text-left">
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody class="table-hover">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.Stock.Title)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.Usedqty)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.Usedvolume)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.dateAdded)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.dateModified)
+                </td>
+                <td class="text-left">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.UsedProductsID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.UsedProductsID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.UsedProductsID })|
+                    @Html.ActionLink("UpdateVolume", "UpdateVolume", new { id = item.UsedProductsID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

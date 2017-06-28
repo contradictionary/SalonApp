@@ -1,0 +1,125 @@
+﻿@model sqlexpressmvc.Models.Member
+
+@{
+    ViewBag.Title = "Renew Membership";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Renew Membership</h4>
+<hr />
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken();
+
+        @Html.HiddenFor(model=> model.MemberID)
+        @Html.HiddenFor(model => model.MembershipID)
+        @Html.HiddenFor(model => model.fname)
+        @Html.HiddenFor(model => model.lname)
+        @Html.HiddenFor(model => model.mobile)
+        @Html.HiddenFor(model => model.dob)
+        @Html.HiddenFor(model => model.anniversary)
+        @Html.HiddenFor(model => model.email)
+        @Html.HiddenFor(model => model.mexpirydate)
+        @Html.HiddenFor(model => model.dateAdded)
+        @Html.HiddenFor(model => model.dateModified)
+
+
+
+    <div class="col-lg-5">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h4>@Html.DisplayFor(model => model.fname) @Html.DisplayFor(model => model.lname)</h4>
+            </div>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MembershipID)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MembershipID)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.fname)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.fname)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.lname)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.lname)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.mobile)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.mobile)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.dob)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.dob)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.anniversary)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.anniversary)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.email)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.email)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.mexpirydate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.mexpirydate)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.dateAdded)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.dateAdded)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.dateModified)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.dateModified)
+                    </dd>
+                </dl>
+            </div>
+            <div class="panel-footer">
+                <input type="submit" value="Renew" class="btn btn-primary" />
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" });
+            </div>
+        </div>
+    </div>               
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

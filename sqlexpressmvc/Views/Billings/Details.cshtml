@@ -1,0 +1,27 @@
+﻿@model sqlexpressmvc.Models.Billing
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Details</h2>
+<div>
+    <h4>Billing</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Name
+        </dt>
+        <dd>@Html.DisplayFor(model => model.Name)</dd>
+        <dt>Amount</dt>
+        <dd>@Html.DisplayFor(model => model.Amount)</dd>
+        <dt>
+            Services
+        </dt>
+        <dd>
+            @Html.ListBox("RateListID", new SelectList(Model.Services, "RateListID", "FullName"))
+        </dd>        
+    </dl>
+</div>
+<p>    
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,75 @@
+﻿@using PagedList; 
+@using PagedList.Mvc; 
+@model IPagedList<sqlexpressmvc.Models.Member>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Members";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Content/datatablecss")
+}
+
+<h4>@Html.Label("Members")</h4>
+@using (Html.BeginForm("Index", "Members", FormMethod.Get))
+{<div class="panel panel-info">
+        <div class="panel-body">
+            <div>
+                @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+                <div class="col-lg-3">
+                    <div class="input-group">
+                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @placeholder = "Search by Mobile..." })
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i> Search</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+    
+}
+<table class="table-fill">
+    <thead>
+        <tr>
+            <th class="text-left">ID</th>
+            <th class="text-left">@Html.ActionLink("First Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })<span class="glyphicon glyphicon-sort"></span></th>
+            <th class="text-left">@Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.DATEADDEDSPM, currentFilter = ViewBag.CurrentFilter }) <span class="glyphicon glyphicon-sort"></span></th>
+            <th class="text-left">Mobile</th>
+            <th class="text-left">Email</th>
+            <th class="text-left">Actions</th>
+        </tr>
+    </thead>
+    <tbody class="table-hover">
+        @foreach (var item in Model)
+        {
+            <tr onclick="location.href = '@(Url.Action("Details", "Members", new { id = item.MemberID}))'">
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.MembershipID)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.fname)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.lname)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.mobile)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MemberID }) | @Html.ActionLink("Renew Membership", "RenewMembership", new { id = item.MemberID })                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

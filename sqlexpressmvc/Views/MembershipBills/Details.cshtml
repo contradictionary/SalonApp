@@ -1,0 +1,33 @@
+﻿@model sqlexpressmvc.Models.MembershipBill
+
+@{
+    ViewBag.Title = "MembershipBill Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h4>MembershipBill Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           Employee
+        </dt>
+        <dd>@Html.DisplayFor(model => model.Employee.fname) @Html.DisplayFor(model => model.Employee.lname)</dd>
+                
+        <dt>
+           Member
+        </dt>
+        <dd>@Html.DisplayFor(model => model.Member.fname) @Html.DisplayFor(model => model.Member.lname) [@Html.DisplayFor(model => model.Member.MembershipID)]</dd>
+        <dt>
+            Bill Amount
+        </dt>
+        <dd>@Html.DisplayFor(model => model.Amount)</dd>
+        <dt>
+            Bill Date
+        </dt>
+        <dd>@Html.DisplayFor(model => model.datesold)</dd>
+    </dl>
+</div>
+<p>    
+    @Html.ActionLink("Back to List", "Index")
+</p>
